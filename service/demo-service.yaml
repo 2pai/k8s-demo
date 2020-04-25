@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-service
+  labels:
+    app: demo-app
+    visualize: "true"
+spec:
+  type: LoadBalancer
+  selector:
+    app: demo-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    name: http
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+    name: proxied    
