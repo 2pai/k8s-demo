@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment # Name of our deployment
+  labels:
+    app: demo-app
+    visualize: "true"
+spec:
+  replicas: 3      # number of pods
+  selector:        # this is how deployment knows what pod to manage
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+        visualize: "true"
+    spec:
+      containers:
+      - name: demo-app 
+        image: move4up/demo-app:1.0.0     # Image version
+        ports:
+        - containerPort: 8080
